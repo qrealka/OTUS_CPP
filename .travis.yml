@@ -33,8 +33,6 @@ jobs:
             - g++-9
             - doxygen
             - python3-pip
-      after_script:
-        - bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-${GCC_VER}
     - os: linux
       dist: bionic
       compiler: clang
@@ -42,9 +40,10 @@ jobs:
         - MATRIX_EVAL="CC=clang && CXX=clang++"
       addons: { apt: { packages: ['doxygen', 'python3-pip'] } }
 
-
 before_script:
   - eval "${MATRIX_EVAL}"
+  - eval "${TRAVIS_BUILD_NUMBER}"
+  - eval "${TRAVIS_BUILD_ID}"
 
 script:
   - mkdir build
@@ -54,5 +53,11 @@ script:
   - ctest -j2
   - cmake --build . --target package
 
-
+deploy:
+  provider: script
+  skip_cleanup: true
+  on:
+    condition: $TRAVIS_COMPILER = gcc
+  script:
+    - curl -T OTUS_CPP-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -qrealka:$BINTRAY_API_KEY "https://api.bintray.com/content/qrealka/otus/helloworld/$TRAVIS_BUILD_NUMBER/OTUS_CPP-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 
