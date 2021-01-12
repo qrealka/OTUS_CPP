@@ -1,5 +1,5 @@
 # Minimum version of cmake
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.12)
 
 if(DEFINED ENV{TRAVIS_BUILD_NUMBER})
     set(TRAVIS_BUILD_NUMBER $ENV{TRAVIS_BUILD_NUMBER})
@@ -23,8 +23,8 @@ target_compile_features(project_options INTERFACE cxx_std_17)
 # Provide version info for c++ targets
 configure_file(version.h.in version.h)
 add_library(project_version INTERFACE)
-# Cmake 3.19+ allow to create INTERFACE library target with source code
-# Clion bundled version is 3.17
+# Cmake 3.19+ allow to create INTERFACE library target with source code, but
+# For Github Actions only 3.12 available
 target_include_directories(project_version INTERFACE ${CMAKE_BINARY_DIR})
 
 if(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
