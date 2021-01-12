@@ -42,8 +42,6 @@ jobs:
 
 before_script:
   - eval "${MATRIX_EVAL}"
-  - eval "${TRAVIS_BUILD_NUMBER}"
-  - eval "${TRAVIS_BUILD_ID}"
 
 script:
   - mkdir build
