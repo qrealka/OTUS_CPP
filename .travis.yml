@@ -37,6 +37,10 @@ script:
   - ctest -j2
   - cmake --build . --target package
 
+before_deploy:
+  - gem install bundler
+  - gem install json -v '2.2.0' --source 'https://rubygems.org/'
+
 deploy:
   # Upload debian packages to Bintray
   provider: bintray
