@@ -29,7 +29,6 @@ before_script:
   - eval "${MATRIX_EVAL}"
 
 script:
-  - sed -i "s/__VERSION__/$BUILD_VERSION/g" bintray-descriptor.json
   - mkdir build
   - cd build
   - cmake -D ENABLE_COVERAGE:BOOL=TRUE ../
@@ -44,6 +43,8 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
+  on:
+    branch: main
   script:
-    - ./jfrog bt upload --user=qrealka --override=true --key $BINTRAY_API_KEY --publish=true --deb=unstable/main/amd64 -vcs-url=https://github.com/qrealka/OTUS_CPP  $TRAVIS_BUILD_DIR/OTUS_CPP-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb
+    - ./jfrog bt upload --user=qrealka --override=true --key $BINTRAY_API_KEY --publish=true --deb=unstable/main/amd64 -vcs-url=https://github.com/qrealka/OTUS_CPP  $TRAVIS_BUILD_DIR/OTUS_CPP-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb qrealka/OTUS/helloworld/$TRAVIS_BUILD_NUMBER
 
