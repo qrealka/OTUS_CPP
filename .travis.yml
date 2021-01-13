@@ -29,16 +29,13 @@ before_script:
   - eval "${MATRIX_EVAL}"
 
 script:
+  - sed -i "s/__VERSION__/$BUILD_VERSION/g" bintray-descriptor.json
   - mkdir build
   - cd build
   - cmake -D ENABLE_COVERAGE:BOOL=TRUE ../
   - cmake --build . -- -j2
   - ctest -j2
   - cmake --build . --target package
-
-before_deploy:
-  # Set the packages name and details in the descriptor file
-  - sed -i "s/__VERSION__/$BUILD_VERSION/g" bintray-descriptor.json
 
 deploy:
   # Upload debian packages to Bintray
