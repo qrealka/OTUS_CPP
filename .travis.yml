@@ -40,7 +40,7 @@ script:
 deploy:
   # Upload debian packages to Bintray
   provider: bintray
-  file: bintray-descriptor.json
+  file: $TRAVIS_BUILD_DIR/bintray-descriptor.json
   user: qrealka
   skip_cleanup: true
   key: $BINTRAY_API_KEY
