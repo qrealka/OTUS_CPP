@@ -47,4 +47,6 @@ deploy:
   user: qrealka
   skip_cleanup: true
   key: $BINTRAY_API_KEY
+  on:
+    branch: main
 
