@@ -11,11 +11,6 @@ install:
 
 jobs:
   include:
-    - os: osx
-      compiler: clang
-      osx_image: xcode11.2
-      env:
-        - MATRIX_EVAL=""
     - os: linux
       dist: focal
       compiler: gcc
@@ -41,12 +36,15 @@ script:
   - ctest -j2
   - cmake --build . --target package
 
+before_deploy:
+  # Set the packages name and details in the descriptor file
+  - sed -i "s/__VERSION__/$BUILD_VERSION/g" bintray-descriptor.json
+
 deploy:
-  provider: script
+  # Upload debian packages to Bintray
+  provider: bintray
+  file: bintray-descriptor.json
+  user: qrealka
   skip_cleanup: true
-  on:
-    branch: main
-    condition: $TRAVIS_COMPILER = gcc
-  script:
-    - curl -T OTUS_CPP-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -qrealka:$BINTRAY_API_KEY "https://api.bintray.com/content/qrealka/otus/helloworld/$TRAVIS_BUILD_NUMBER/OTUS_CPP-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+  key: $BINTRAY_API_KEY
 
