@@ -38,7 +38,7 @@ script:
 
 before_deploy:
   - curl -fL https://getcli.jfrog.io | sh
-  - ls -alh
+  - ./jfrog bt pc --pub-dn=true --user=qrealka --licenses=BSL-1.0 --key $BINTRAY_API_KEY --vcs-url=https://github.com/qrealka/OTUS qrealka/OTUS/helloworld || echo "package already exists"
 
 deploy:
   provider: script
@@ -46,5 +46,5 @@ deploy:
   on:
     branch: main
   script:
-    - ./jfrog bt upload --user=qrealka --override=true --key $BINTRAY_API_KEY --publish=true --deb=unstable/main/amd64 $TRAVIS_BUILD_DIR/OTUS_CPP-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb qrealka/OTUS/helloworld/$TRAVIS_BUILD_NUMBER
+    - ./jfrog bt upload --override=true --key $BINTRAY_API_KEY --publish=true --deb=unstable/main/amd64 $TRAVIS_BUILD_DIR/OTUS_CPP-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb qrealka/OTUS/helloworld/$TRAVIS_BUILD_NUMBER
 
