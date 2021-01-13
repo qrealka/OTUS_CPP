@@ -38,17 +38,12 @@ script:
   - cmake --build . --target package
 
 before_deploy:
-  - gem install bundler
-  - gem install json -v '2.2.0' --source 'https://rubygems.org/'
+  - curl -fL https://getcli.jfrog.io | sh
+  - ls -alh
 
 deploy:
-  # Upload debian packages to Bintray
-  provider: bintray
-  file: $TRAVIS_BUILD_DIR/bintray-descriptor.json
-  # https://github.com/travis-ci/dpl/issues/1020
-  user: qrealka
+  provider: script
   skip_cleanup: true
-  key: $BINTRAY_API_KEY
-  on:
-    branch: main
+  script:
+    - ./jfrog bt upload --user=qrealka --override=true --key $BINTRAY_API_KEY --publish=true --deb=unstable/main/amd64 -vcs-url=https://github.com/qrealka/OTUS_CPP  $TRAVIS_BUILD_DIR/OTUS_CPP-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb
 
