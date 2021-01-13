@@ -46,5 +46,5 @@ deploy:
   on:
     branch: main
   script:
-    - ./jfrog bt upload --user=qrealka --override=true --key $BINTRAY_API_KEY --publish=true --deb=unstable/main/amd64 -vcs-url=https://github.com/qrealka/OTUS_CPP  $TRAVIS_BUILD_DIR/OTUS_CPP-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb qrealka/OTUS/helloworld/$TRAVIS_BUILD_NUMBER
+    - ./jfrog bt upload --user=qrealka --override=true --key $BINTRAY_API_KEY --publish=true --deb=unstable/main/amd64 $TRAVIS_BUILD_DIR/OTUS_CPP-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb qrealka/OTUS/helloworld/$TRAVIS_BUILD_NUMBER
 
