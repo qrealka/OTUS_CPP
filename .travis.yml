@@ -46,8 +46,6 @@ deploy:
   provider: bintray
   file: $TRAVIS_BUILD_DIR/bintray-descriptor.json
   # https://github.com/travis-ci/dpl/issues/1020
-  edge:
-    branch: dpl-2
   user: qrealka
   skip_cleanup: true
   key: $BINTRAY_API_KEY
