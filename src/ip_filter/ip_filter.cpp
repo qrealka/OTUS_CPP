@@ -27,9 +27,6 @@ int main()
 
         // first octet equals 1
         auto first_octet_is = [](ipv4 ip) { return ip.octets[0] == 1; };
-        // ipv4 sizeof 4 & trivial copyable - ABI said that register should be used
-        // pass by value more optimal than pass by reference for this case
-        // https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f16-for-in-parameters-pass-cheaply-copied-types-by-value-and-others-by-reference-to-const
         for(auto ip : ip_pool) {
             if (first_octet_is(ip)) {
                 fmt::print("{}\n", ip);
