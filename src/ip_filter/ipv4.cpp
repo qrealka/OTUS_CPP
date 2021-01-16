@@ -30,6 +30,6 @@ std::optional<ipv4> ipv4::parse(std::string_view line)
 // and trivial copyable - ABI said that registers should be used
 // pass by value more optimal than pass by reference for this case
 // https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f16-for-in-parameters-pass-cheaply-copied-types-by-value-and-others-by-reference-to-const
-static_assert(sizeof(ipv4) <= sizeof(std::int64_t), "Size ipv4 address should be not bigger than 4 machine words");
+static_assert(sizeof(ipv4) <= sizeof(std::int32_t), "Size ipv4 address should be less than 3 machine words");
 // https://wiki.osdev.org/System_V_ABI
 static_assert(std::is_trivially_copyable_v<ipv4>, "Intel x86-64 ABI: 3.2.3 Parameter passing: Classification of aggregates");

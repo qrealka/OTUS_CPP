@@ -43,7 +43,7 @@ int main()
 
         // any octet equals 46
         for(auto ip : ip_pool) {
-            if (std::any_of(ip.octets.begin(), ip.octets.end(), 46)) {
+            if (std::any_of(ip.octets.begin(), ip.octets.end(), [](auto byte){ return byte == 46;})) {
                 fmt::print("{}\n", ip);
             }
         }
