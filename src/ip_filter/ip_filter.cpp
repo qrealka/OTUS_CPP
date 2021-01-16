@@ -13,7 +13,7 @@ int main()
 
     try {
         for (std::string line; std::getline(std::cin, line);) {
-            auto tab_pos = line.find_first_not_of('\t');
+            auto tab_pos = line.find_first_of('\t');
             if (tab_pos == line.npos) {
                 ip_pool.push_back(*ipv4::parse(line));
             } else {

@@ -2,6 +2,10 @@ add_subdirectory(helloworld_cli)
 add_subdirectory(ip_filter)
 
 # Install section
+# For testing:
+# echo "deb https://dl.bintray.com/qrealka/OTUS {distribution} {components}" | sudo tee -a /etc/apt/sources.list
+# apt update && apt install -y helloworld
+# helloworld_cli
 install(TARGETS helloworld_cli RUNTIME DESTINATION bin)
 
 if(UNIX AND NOT APPLE)
