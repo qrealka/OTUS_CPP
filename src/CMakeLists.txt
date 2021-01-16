@@ -1,4 +1,5 @@
 add_subdirectory(helloworld_cli)
+add_subdirectory(ip_filter)
 
 # Install section
 install(TARGETS helloworld_cli RUNTIME DESTINATION bin)
