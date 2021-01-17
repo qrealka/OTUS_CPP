@@ -14,7 +14,7 @@ int main()
     try {
         for (std::string line; std::getline(std::cin, line);) {
             auto tab_pos = line.find_first_of('\t');
-            if (tab_pos == line.npos) {
+            if (tab_pos == line.npos || tab_pos == 0) {
                 ip_pool.push_back(*ipv4::parse(line));
             } else {
                 ip_pool.push_back(*ipv4::parse(std::string_view{ line.c_str(), tab_pos }));
