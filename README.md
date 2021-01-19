@@ -8,6 +8,14 @@ OTUS Course C++ for professionals. The project layout based on Jason Turner [cpp
 
 
 # Homeworks
+All homework projects have a protection to prevent build from source code directory. Example bash command to build a solution:
+```bash
+  mkdir build
+  cd build
+  cmake ../
+  cmake --build . 
+  ctest 
+```
 1. Build, test, deploy
     * [Helloworld](https://github.com/qrealka/OTUS_CPP/blob/main/src/CMakeLists.txt#L5) [ ![Download](https://api.bintray.com/packages/qrealka/OTUS/helloworld/images/download.svg) ](https://bintray.com/qrealka/OTUS/helloworld/_latestVersion)
     * IP filter
