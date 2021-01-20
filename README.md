@@ -1,4 +1,4 @@
-# OTUS_CPP
+# OTUS C++ Course
 
 ![CMake](https://github.com/qrealka/OTUS_CPP/workflows/CMake/badge.svg)
 
@@ -193,5 +193,6 @@ version of `fmt`.
 See [Catch2 tutorial](https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md)
 
 ## Homeworks
-See another README.MD
+See [another README.MD](https://github.com/qrealka/OTUS_CPP/tree/main/src)
+
 
